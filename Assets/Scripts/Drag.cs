@@ -22,7 +22,6 @@ public class Drag : MonoBehaviour {
 		float dragForceMagnitude = CalculateDragMagnitude(rb.velocity.magnitude);
 		dragForce = -rb.velocity.normalized * dragForceMagnitude;
 		float windForcwMagnitude;
-		print(rb.velocity.x);
 		windForcwMagnitude = CalculateDragMagnitude(WindSpeed);
 		if (WindSpeed > 0) {
 			windForce = Vector3.right * windForcwMagnitude;
