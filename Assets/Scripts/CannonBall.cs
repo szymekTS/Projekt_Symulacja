@@ -14,11 +14,13 @@ public class CannonBall : MonoBehaviour {
 	public float velocity;
 	public GameObject Sign;
 	public ParticleSystem smoke;
+	public string dane;
 
 	StringBuilder csvContent;
 	// Use this for initialization
 	void Start () {
 		csvContent = new StringBuilder();
+		csvContent.AppendLine(dane);
 		smoke.Play();
 		rb = GetComponent<Rigidbody>();
 		start = Time.time;
@@ -40,11 +42,12 @@ public class CannonBall : MonoBehaviour {
 
 	void FixedUpdate() {
 		if (alive) {
-			time = Time.time - start;
-			string line = Math.Round(rb.transform.position.x,4) + "," + Math.Round(rb.transform.position.y,4) + "," + Math.Round(time,4);
-			csvContent.AppendLine(line);
+			if (rb.transform.position.x > 11000|| rb.transform.position.x < 9000 ) {
+				time = Time.time - start;
+				string line = Math.Round(rb.transform.position.x, 4) + "," + Math.Round(rb.transform.position.y, 4) + "," + Math.Round(time, 4);
+				csvContent.AppendLine(line);
+			}
 		}
-
 	}
 
 	private void getspeed() {

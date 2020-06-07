@@ -19,6 +19,7 @@ public class Firing : MonoBehaviour {
     public Text windText;
     Rigidbody CannonBody;
     public AudioSource boom;
+    float angletmp;
 
     // Use this for initialization
     void Start() {
@@ -27,6 +28,7 @@ public class Firing : MonoBehaviour {
 
     public void AdjustAngle(float angle) {
         float tmpAngle = angle - 90;
+        angletmp = tmpAngle + 90;
         CannonBody.transform.rotation = Quaternion.Euler(0, 0, tmpAngle);
         if (angleText != null)
             angleText.text = "" + "Kąt: " + angle + " stopni";
@@ -69,6 +71,7 @@ public class Firing : MonoBehaviour {
     private void DoShot() {
         GameObject Temporary_Bullet_Handler = Instantiate(Bullet, BulletEmitter.transform.position, BulletEmitter.transform.rotation) as GameObject;
         Rigidbody Temporary_RigidBody;
+        Temporary_Bullet_Handler.GetComponent<CannonBall>().dane = "V:" + BulletVelocity +",M:"+ BulletMass+",Angle:" + angletmp + ",g:" + BulletGravity+",p:"+ AirDensity + ",W:" + WindMagnitude;
         Temporary_RigidBody = Temporary_Bullet_Handler.GetComponent<Rigidbody>();
         Temporary_RigidBody.mass = BulletMass;
         Temporary_Bullet_Handler.GetComponent<Drag>().AirDensity = AirDensity;
