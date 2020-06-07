@@ -25,6 +25,7 @@ public class CannonBall : MonoBehaviour {
 		Invoke("getspeed", 0.1f);
 	}
 	void OnCollisionEnter(Collision collision) {
+		if (!alive) { return; }
 		switch (collision.gameObject.tag) {
 			case "Finish":
 				alive = false;
@@ -70,7 +71,7 @@ public class CannonBall : MonoBehaviour {
 	}
 
 	private string getPath() {
-		string path = Path.GetDirectoryName(Application.dataPath) + "/shot" + "-" + System.DateTime.Now.Hour + "-" + System.DateTime.Now.Minute + "-" + System.DateTime.Now.Second + ".csv";
+		string path = Path.GetDirectoryName(Application.dataPath) + "/shot" + "_" + System.DateTime.Now.Day+"-" + System.DateTime.Now.Month+"-" + System.DateTime.Now.Year + "_" + System.DateTime.Now.Hour + "-" + System.DateTime.Now.Minute + "-" + System.DateTime.Now.Second + ".csv";
 		return path;
 	}
 }
