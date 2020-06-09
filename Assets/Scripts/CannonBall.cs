@@ -40,11 +40,12 @@ public class CannonBall : MonoBehaviour {
 		}
 	}
 
-	void FixedUpdate() {
+	void FixedUpdate() {	
 		if (alive) {
 			if (rb.transform.position.x > 11000|| rb.transform.position.x < 9000 ) {
 				time = Time.time - start;
-				string line = Math.Round(rb.transform.position.x, 4) + "," + Math.Round(rb.transform.position.y, 4) + "," + Math.Round(time, 4);
+				string line = Math.Round(rb.transform.position.x, 4) + ";" + Math.Round(rb.transform.position.y, 4) + ";" + Math.Round(time, 4);
+				line = line.Replace('.', ',');
 				csvContent.AppendLine(line);
 			}
 		}

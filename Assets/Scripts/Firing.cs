@@ -78,7 +78,6 @@ public class Firing : MonoBehaviour {
         Temporary_Bullet_Handler.GetComponent<Drag>().WindSpeed = WindMagnitude;
         Temporary_Bullet_Handler.GetComponent<Gravity>().GravitationalAcceleration = BulletGravity;
         Temporary_RigidBody.velocity = transform.up * BulletVelocity;
-        boom.Play();
         GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
         cam.GetComponent<Follower>().Target = Temporary_Bullet_Handler.transform;
         cam.GetComponent<Follower>().startFollow();
@@ -87,5 +86,6 @@ public class Firing : MonoBehaviour {
     private void DoBooom() {
         sparks.Play();
         smoke.Play();
+        boom.Play();
     }
 }
